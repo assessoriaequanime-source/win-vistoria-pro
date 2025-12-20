@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Shield, Eye, EyeOff, Loader2 } from 'lucide-react';
+import { Shield, Eye, EyeOff, Loader2, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from 'sonner';
@@ -35,26 +35,26 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-8">
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-8 bg-gradient-to-b from-neutral-50 via-white to-neutral-50">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-sm"
       >
         {/* Logo */}
-        <div className="text-center mb-8">
-          <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-primary to-primary/80 flex items-center justify-center mx-auto mb-4 glow">
-            <Shield className="w-10 h-10 text-primary-foreground" />
+        <div className="text-center mb-8 md:mb-12">
+          <div className="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mx-auto mb-4 border border-primary/20 glow">
+            <Shield className="w-8 h-8 md:w-10 md:h-10 text-primary" />
           </div>
-          <h1 className="font-montserrat font-bold text-2xl text-foreground">
+          <h1 className="font-display font-bold text-2xl md:text-3xl text-foreground">
             SOS Grupo Win
           </h1>
-          <p className="text-muted-foreground text-sm mt-1">Portal Operacional</p>
+          <p className="text-muted-foreground text-sm mt-2">Portal Operacional</p>
         </div>
 
         {/* Login Form */}
-        <div className="glass-card p-6">
-          <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="glass-card p-6 md:p-8 border border-neutral-200 space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-4 md:space-y-5">
             <div>
               <label className="field-label">Usuário</label>
               <input
@@ -91,7 +91,7 @@ const Login = () => {
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="w-full touch-button bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground font-semibold shadow-button"
+              className="w-full touch-button bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground font-semibold shadow-button h-11"
             >
               {isSubmitting ? (
                 <>
@@ -105,23 +105,30 @@ const Login = () => {
           </form>
 
           {/* Demo credentials */}
-          <div className="mt-6 p-4 rounded-xl bg-muted/50 border border-border">
-            <p className="text-xs text-muted-foreground mb-2 font-medium">Usuários de teste:</p>
-            <div className="space-y-1 text-xs text-muted-foreground">
-              <p><span className="text-foreground font-medium">master</span> / master123</p>
-              <p><span className="text-foreground font-medium">consultora</span> / cons123</p>
-              <p><span className="text-foreground font-medium">eventos</span> / eventos123</p>
+          <div className="p-4 rounded-lg bg-neutral-50 border border-neutral-200">
+            <p className="text-xs font-semibold text-foreground mb-3">Usuários de teste:</p>
+            <div className="space-y-2 text-xs text-muted-foreground">
+              <div className="flex items-center justify-between">
+                <span><span className="text-foreground font-medium">master</span> / <code className="text-primary">master123</code></span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span><span className="text-foreground font-medium">consultora</span> / <code className="text-primary">cons123</code></span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span><span className="text-foreground font-medium">eventos</span> / <code className="text-primary">eventos123</code></span>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Back link */}
-        <div className="text-center mt-6">
+        <div className="text-center mt-6 md:mt-8">
           <button
             onClick={() => navigate('/')}
-            className="text-sm text-muted-foreground hover:text-primary transition-colors"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors font-medium"
           >
-            ← Voltar ao início
+            <ArrowLeft className="w-4 h-4" />
+            Voltar ao início
           </button>
         </div>
       </motion.div>
